@@ -1,0 +1,30 @@
+{
+  "name": "prep_prova",
+  "version": "1.0.0",
+  "description": "preparação para a prova da próxima semana",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j-franca/prep_prova.git"
+  },
+  "keywords": [
+    "prova",
+    "preparação",
+    "estudo"
+  ],
+  "author": "Júlia França",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/j-franca/prep_prova/issues"
+  },
+  "homepage": "https://github.com/j-franca/prep_prova#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "mysql2": "^3.3.2",
+    "sequelize": "^6.31.1"
+  }
+}

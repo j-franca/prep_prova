@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="css/consulta.css">
+    <title>consulta</title>
+</head>
+<h1>Consulta de produtos</h1>
+<hr>
+<br>
+<table>
+    <thead>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+    </thead>
+    <tbody>
+        {{#each valores}}
+        <tr>
+            <td>{{this.id}}</td>
+            <td>{{this.nome}}</td>
+            <td>{{this.qtd}}</td>
+            <td>{{this.preco}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>

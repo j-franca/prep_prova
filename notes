@@ -1,0 +1,4 @@
+.use - dá algum retorno
+.static - diz onde fica os arquivos estáticos
+.engine - monitora o template main do handlebars
+lembrar de install --save express de novo, por causa do node_modules
