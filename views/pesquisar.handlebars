@@ -1,0 +1,14 @@
+<head>
+    <title>Pesquisar</title>
+</head>
+<h1>Pesquisar</h1>
+<hr>
+<form action="/pesquisar" method="post">
+<label for="codigo">Código</label>
+<input type="text" name="codigo" placeholder="Código do produto">
+<button type="submit" id="pesq">pesquisar</button>
+</form><br><br>
+{{#if valor}}
+<p>Código:{{valor.id}}&emsp;Produto:{{valor.verduras}}&emsp;
+Quantidade:{{valor.quantidade}}&emsp;Preço:{{valor.preco}}</p>
+{{/if}}

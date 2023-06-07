@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
 const conn = require('./db/conn')
-const Produto = require('./models/Produto')
+const Verdura = require('./models/Verdura')
 
 //------ abertura de porta
 //TCP:
@@ -23,23 +23,49 @@ app.use(express.static('public'))
 app.set('view engine', 'handlebars')
 app.engine('handlebars', exphbs.engine())
 
-//------ rotas
-app.post('/cadastrar', async (req, res)=>{
-    const nome = req.body.nome
-    const qtd = Number(req.body.qtd)
-    const preco = Number(req.body.preco)
+//------ rotas -------
+app.post('/apagar', async (req, res)=>{
+    const id = req.body.id
+    // const verdura = req.body.verdura
+    // const quantidade = req.body.quantidade
+    // const preco = req.body.preco
+    // console.log(id, verdura, quantidade, preco)
+    const pesq = await Verdura.findOne({raw:true, where: {id:id}})
+    console.log(pesq)
+    Verdura.destroy({raw:true, where: {id:pesq.id}})
+    res.redirect('/')
+})
+app.get('/apagar', (req, res)=>{
+    res.render('apagar')
+})
 
-    console.log(nome, qtd, preco)
-    await Produto.create({nome, qtd, preco})
-    res.redirect('/cadastrar')
+app.post('/cadastrar', async (req, res)=>{
+    const verduras = req.body.verduras
+    const quantidade = req.body.quantidade
+    const preco = req.body.preco
+    console.log(verduras, quantidade, preco)
+    await Verdura.create({verduras, quantidade, preco})
+    res.redirect('/')
 })
 app.get('/cadastrar', (req, res)=>{
-    res.render('cadastra')
+    res.render('cadastrar')
 })
-app.get('/consultar', async (req, res)=>{
-    const dados = await Produto.findAll({raw:true})
+
+app.post('/pesquisar', async (req, res)=>{
+    const codigo = req.body.codigo 
+    console.log(codigo)
+    const pesq = await Verdura.findOne({raw:true, where: {id:codigo}})
+    console.log('--------------')
+    console.log(pesq)
+    res.render('pesquisar', {valor: pesq})
+})
+app.get('/pesquisar', (req, res)=>{
+    res.render('pesquisar')
+})
+app.get('/listar', async (req, res)=>{
+    const dados = await Verdura.findAll({raw:true})
     console.log(dados)
-    res.render('consulta', {valores: dados})
+    res.render('listar', {valores:dados})
 })
 app.get('/', (req, res)=>{
     res.render('home')
